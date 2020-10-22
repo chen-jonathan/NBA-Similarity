@@ -22,5 +22,6 @@ headers = headers[1:]
 rows = soup.findAll('tr')[1:]
 player_stats = [[td.getText() for td in rows[i].findAll('td')]
                 for i in range(len(rows))]
+
 stats = pd.DataFrame(player_stats, columns=headers)
 print(stats.head(10))
