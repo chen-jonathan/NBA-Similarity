@@ -3,6 +3,10 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pandas as pd
 
+"""
+File to scrape 2019-2020 season data, amend problems in dataset and write 
+the refined data to a csv file.
+"""
 # NBA season we will be analyzing
 year = 2020
 # URL page we will scraping
@@ -20,8 +24,20 @@ headers = headers[1:]
 
 # avoid the first header row
 rows = soup.findAll('tr')[1:]
-player_stats = [[td.getText() for td in rows[i].findAll('td')]
+player_stats_raw = [[td.getText() for td in rows[i].findAll('td')]
                 for i in range(len(rows))]
 
-stats = pd.DataFrame(player_stats, columns=headers)
-print(stats.head(10))
+stats = []
+for i in range(len(player_stats_raw)):
+    if i == 0:
+        stats.append(player_stats_raw[0])
+    else:
+        if len(player_stats_raw[i]) != 0:
+            if stats[len(stats)-1][0] != player_stats_raw[i][0]:
+                stats.append(player_stats_raw[i])
+     
+        
+    
+
+data = pd.DataFrame(stats, columns=headers)
+data.to_csv('stats.csv', index = False)
