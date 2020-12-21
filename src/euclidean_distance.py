@@ -14,13 +14,20 @@ def get_distance(player1: List, player2: List) -> float:
         distance_squared += d
     return sqrt(distance_squared)
 
-df = pd.read_csv('stats.csv')
-df = df.drop(columns=['Pos', "Age", "Tm", "G", "GS"])
-df = df.fillna(0)
-df.set_index('Player', inplace=True)
-lst = df.loc['Steven Adams']
-print(lst['MP'])
- 
+#Stats Dataframe
+stats = pd.read_csv('stats.csv')
+stats = stats.drop(columns=['Pos', "Age", "Tm", "G", "GS"])
+stats = stats.fillna(0)
+stats.set_index('Player', inplace=True)
+#Advanced Stats Dataframe
+advanced_stats = pd.read_csv('advanced_stats.csv')
+column_names = advanced_stats.columns.values
+column_names[18] = "delete"
+column_names[23] = "delete2"
+advanced_stats.columns = column_names
+advanced_stats = advanced_stats.drop(columns=["Pos", "Age", "Tm", "G", "delete", "delete2"])
+advanced_stats.set_index('Player', inplace=True)
+
 #player_dictionary = {}
 #vector= []
 #for index, row in df.iterrows():
@@ -33,4 +40,5 @@ print(lst['MP'])
 
 #print(lebron[0:])
 #print(luka[0:])
+print(get_distance(stats.loc["Danny Green"], stats.loc["Wesley Matthews"]))
 
