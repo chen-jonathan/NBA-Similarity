@@ -31,6 +31,19 @@ def get_distance(player1: List, player2: List) -> float:
 def find_all_similar(player1: List, stats):
     all_similar = {}
     for i, row in stats.iterrows():
-        all_similar[i] = get_distance(player1, stats.loc[i])
+        if player1.name != i:
+            all_similar[get_distance(player1, stats.loc[i])] = [i] 
     return all_similar
-a = find_all_similar(stats.loc["Steven Adams"], stats)
+
+def get_most_similar(all_similar):
+    smallest= list(all_similar.keys())
+    smallest.sort()
+    most_similar = []
+    counter = 0
+    while counter < 5:
+       for player in all_similar[smallest[counter]]:
+            most_similar.append(player)
+            counter +=1
+    return most_similar
+a = find_all_similar(stats.loc["Danny Green"], stats)
+b = get_most_similar(a)
