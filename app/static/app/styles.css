@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Asap, sans-serif;
+}
+
+body{
+  background: #191919;
+  place-items: center;
+}
+
+header{
+  background: white;
+  padding: 20px;
+}
+
+header > h1{
+  color: #191919;
+
+  text-align: center;
+}
+
+#prompt {
+    margin-top: 40px;
+    color: white;
+    text-align: center;
+
+}
+
+
