@@ -3,9 +3,17 @@
 {% block body %}
 <h1 id="prompt">Type in the players:</h1>
 
-<form>
-    <div><input type="text" id="input" name="input"></div>
 
+<form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
 </form>
+{% if submitted %}
+<div id="title"><h3>Here are all the similar players for {{ player_name }}: </h3></div>
+<div id="top-five"></div>
+{% else %}
+
+{% endif %}
 
 {% endblock %}
