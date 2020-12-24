@@ -7,10 +7,16 @@
 <form action="{% url 'index' %}" method="post">
     {% csrf_token %}
     {{ form }}
+    <datalist id="player-input">
+        {% for each in datalist %}
+        <option value="{{each}}"></option>
+        {% endfor %}
+
+    </datalist>
     <input type="submit">
 </form>
 {% if submitted %}
-<div id="title"><h2>Here are all the similar players for <span id="player">{{ player_name }}</span>:</h2></div>
+<div id="title"><h2>Here are the five most similar players for <span id="player">{{ player_name }}</span>:</h2></div>
 
 <ol>
     {% for each in top_five %}

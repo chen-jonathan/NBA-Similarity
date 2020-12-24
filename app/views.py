@@ -12,7 +12,7 @@ player_list = euclidean_distance.player_list(stats)
 
 
 class NameForm(forms.Form):
-    player_real_name = forms.CharField(label=False)
+    player_real_name = forms.CharField(label=False, widget=forms.TextInput(attrs={'list':'player-input'}))
 
 
 def index(request):
@@ -32,18 +32,21 @@ def index(request):
                     'player_name': player_name,
                     'submitted': True,
                     "top_five": top_five,
-                    "message": ""})
+                    "message": "",
+                    "datalist": player_list})
             else:
                 return render(request, 'app/index.html', {
                     'form': form,
                     'player_name': player_name,
                     'submitted': False,
                     "top_five": [],
-                    "message": "Please type in a valid name"})
+                    "message": "Please type in a valid name",
+                    "datalist": player_list})
     # if a GET (or any other method) we'll create a blank form
     else:
         form = NameForm()
 
     return render(request, 'app/index.html',
                   {'form': form, 'player_name': "", 'submitted': False,
-                   "top_five": [], "message": ""})
+                   "top_five": [], "message": "",
+                   "datalist": player_list})
