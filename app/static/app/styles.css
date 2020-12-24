@@ -45,18 +45,22 @@ input[type=text]{
  }
 
 #prompt {
-    margin-top: 40px;
+    margin-top: 50px;
 
 
 }
 form {
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 
 #title {
 
-    margin-top: 40px;
+    margin-top: 50px;
+}
+
+#player{
+    color: yellow;
 }
 
 .footer {
@@ -69,3 +73,12 @@ form {
   text-align: center;
 }
 
+li {
+    margin-top:25px;
+    list-style-type: square;
+    font-size: 18px;
+}
+
+#message{
+    margin-top: 40px;
+}

@@ -1,7 +1,7 @@
 {% extends "app/layout.html" %}
 
 {% block body %}
-<h1 id="prompt">Type in the players:</h1>
+<h1 id="prompt">Type in your player:</h1>
 
 
 <form action="{% url 'index' %}" method="post">
@@ -10,10 +10,16 @@
     <input type="submit">
 </form>
 {% if submitted %}
-<div id="title"><h3>Here are all the similar players for {{ player_name }}: </h3></div>
-<div id="top-five"></div>
+<div id="title"><h2>Here are all the similar players for <span id="player">{{ player_name }}</span>:</h2></div>
+
+<ol>
+    {% for each in top_five %}
+    <li>{{ each }}</li>
+    {% endfor %}
+</ol>
+
 {% else %}
 
 {% endif %}
-
+<h3 id="message">{{message}}</h3>
 {% endblock %}

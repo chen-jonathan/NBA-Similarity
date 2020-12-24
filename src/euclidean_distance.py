@@ -7,19 +7,19 @@ import pandas as pd
 """
 Create vectors for each player and calculate the distance between each vector
 """
-#Stats Dataframe
-stats = pd.read_csv('stats.csv')
-stats = stats.drop(columns=['Pos', "Age", "Tm", "G", "GS"])
-stats = stats.fillna(0)
-stats.set_index('Player', inplace=True)
-#Advanced Stats Dataframe
-advanced_stats = pd.read_csv('advanced_stats.csv')
-column_names = advanced_stats.columns.values
-column_names[18] = "delete"
-column_names[23] = "delete2"
-advanced_stats.columns = column_names
-advanced_stats = advanced_stats.drop(columns=["Pos", "Age", "Tm", "G", "delete", "delete2"])
-advanced_stats.set_index('Player', inplace=True)
+# #Stats Dataframe
+# stats = pd.read_csv('stats.csv')
+# stats = stats.drop(columns=['Pos', "Age", "Tm", "G", "GS"])
+# stats = stats.fillna(0)
+# stats.set_index('Player', inplace=True)
+# #Advanced Stats Dataframe
+# advanced_stats = pd.read_csv('src/advanced_stats.csv')
+# column_names = advanced_stats.columns.values
+# column_names[18] = "delete"
+# column_names[23] = "delete2"
+# advanced_stats.columns = column_names
+# advanced_stats = advanced_stats.drop(columns=["Pos", "Age", "Tm", "G", "delete", "delete2"])
+# advanced_stats.set_index('Player', inplace=True)
 
 def get_distance(player1: List, player2: List) -> float:
     distance_squared = 0
@@ -32,11 +32,11 @@ def find_all_similar(player1: List, stats):
     all_similar = {}
     for i, row in stats.iterrows():
         if player1.name != i:
-            all_similar[get_distance(player1, stats.loc[i])] = [i] 
+            all_similar[get_distance(player1, stats.loc[i])] = [i]
     return all_similar
 
 def get_most_similar(all_similar):
-    smallest= list(all_similar.keys())
+    smallest = list(all_similar.keys())
     smallest.sort()
     most_similar = []
     counter = 0
@@ -45,5 +45,14 @@ def get_most_similar(all_similar):
             most_similar.append(player)
             counter +=1
     return most_similar
-a = find_all_similar(stats.loc["Danny Green"], stats)
-b = get_most_similar(a)
+
+def player_list(stats):
+    lst = []
+    for i, row in stats.iterrows():
+        lst.append(str(row.name))
+    return lst
+
+
+
+# a = find_all_similar(stats.loc["Danny Green"], stats)
+# b = get_most_similar(a)
