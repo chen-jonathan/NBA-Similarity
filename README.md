@@ -1,2 +1,7 @@
 # NBA-Similarity
-[Deployed Using heroku](https://nbasimilarity.herokuapp.com/app/)
+A web application to find the most similar NBA players in terms of statistical production.
+
+Start discovering [here!](https://nbasimilarity.herokuapp.com/app/).
+
+
+
